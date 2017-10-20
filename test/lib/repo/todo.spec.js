@@ -8,15 +8,23 @@ const { expect } = chai;
 
 describe('Todo', () => {
   describe('#findById(id)', () => {
-    // it('return null when id is not found', () => {
-    //   const id = 'no this id';
-    //   const todo = TodoRepo.findById(id);
-    //   expect(todo).to.equal(null);
-    // });
-    it('return object of all data in the record', () => {
-      const id = '49aecf71-6ca3-4c52-be72-bf51b84e8d76';
-      const todo = TodoRepo.findById(id);
+    it('return null when id is not found', async () => {
+      const id = 'no this id';
+      const todo = await TodoRepo.findById(id);
       expect(todo).to.equal(null);
+    });
+
+    it('return object of all data in the record', async () => {
+      const id = '96f1e8e7-37e1-4386-b680-a4eb9365f4a4';
+      const todo = await TodoRepo.findById(id);
+      const expectedResult = {
+        id,
+        createdAt: 1508490517512,
+        deadline: 1508490517510,
+        name: 'todo 1 in test',
+        updatedAt: 1508490517512,
+      };
+      expect(`${todo}`).to.equal(`${expectedResult}`);
     });
   });
 

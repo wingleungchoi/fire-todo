@@ -43,4 +43,21 @@ describe('Todo', () => {
       expect(todoFromDB.name).to.equal(todo.name);
     });
   });
+
+  describe('#update(obj)', () => {
+    it('shall update data', async () => {
+      const deadline = moment().valueOf();
+      const todo = {
+        id: '8c121250-7222-4606-8239-0eaa881c4bee',
+        userId: '123',
+        name: 'todo 1 in test',
+        deadline,
+      };
+      const presistedTodo = await TodoRepo.update(todo);
+      expect(presistedTodo.id).to.be.a('string');
+      const todoFromDB = await TodoRepo.findById(presistedTodo.id);
+      expect(todoFromDB.userId).to.equal(todo.userId);
+      expect(todoFromDB.deadline).to.equal(todo.deadline);
+    });
+  });
 });

@@ -1,4 +1,8 @@
+import dotenv from 'dotenv';
 import http from 'http';
+
+// setup environment environement
+dotenv.config();
 
 const server = http.createServer((request, response) => {
   response.writeHead(200, {

@@ -1,5 +1,5 @@
 # Dependency directory
 node_modules
 
-# firebase private key
-firebase-secret.json
+# environment variables
+.env

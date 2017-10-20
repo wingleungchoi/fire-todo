@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "babel-node app.js",
-    "test": "mocha --require babel-polyfill --compilers js:babel-register \"test/**/*.spec.js\" && ./node_modules/.bin/eslint lib/**"
+    "test": "mocha --require babel-polyfill --compilers js:babel-register \"test/**/*.spec.js\" --exit && ./node_modules/.bin/eslint lib/**"
   },
   "repository": {
     "type": "git",

@@ -111,4 +111,15 @@ describe('Todo', () => {
       expect(presistedTodo).to.equal(null);
     });
   });
+
+  describe('#where(val, key)', () => {
+    it('returns a list of related todos when some todo meet the target', async () => {
+      const todos = await TodoRepo.where('123', 'userId');
+      expect(todos.length).to.be.above(0);
+    });
+    it('returns empty list when NO todo meet the target', async () => {
+      const todos = await TodoRepo.where('no this useId', 'userId');
+      expect(todos.length).to.equal(0);
+    });
+  });
 });

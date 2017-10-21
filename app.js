@@ -15,6 +15,18 @@ const server = http.createServer((req, res) => {
     } else if (req.method === 'POST') {
       // TodoController.get return promise;
       TodoController.create(req, res);
+      // https://stackoverflow.com/questions/24241893/rest-api-patch-or-put
+      // The PATCH method is the correct choice here
+      // as you're updating an existing resource - the group ID.
+      // PUT should only be used if you're replacing a resource in it's entirety.
+      // As currently, FireBase is likely behaving as PATCH.
+      // Therefore, No PUT is allowed
+    } else if (req.method === 'PATCH') {
+      // TodoController.get return promise;
+      TodoController.update(req, res);
+    } else if (req.method === 'DELETE') {
+      // TodoController.get return promise;
+      TodoController.delete(req, res);
     } else {
       renderJsonResponse(res, {
         success: false,

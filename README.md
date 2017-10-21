@@ -1,6 +1,8 @@
 # FireBase-TODO-backend
 A trial project of integrating Google Firebase (Admin)
+
 node version: 6.11.4
+
 instruction:
 ```
   git clone git@github.com:wingleungchoi/fire-todo.git

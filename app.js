@@ -1,15 +1,36 @@
-import dotenv from 'dotenv';
+/* eslint no-unused-vars: ["error", { "varsIgnorePattern": "loadingEnv" }] */
 import http from 'http';
+import url from 'url';
 
-// setup environment environement
-dotenv.config();
+import loadingEnv from './loading_env';
+import TodoController from './lib/controllers/todo';
+import { renderJsonResponse } from './lib/utils/res';
 
-const server = http.createServer((request, response) => {
-  response.writeHead(200, {
-    'Content-Type': 'text/plain',
-    'Access-Control-Allow-Origin': '*',
-  });
-  response.end('Welcome to TODO (base in firebase)\n');
+const server = http.createServer((req, res) => {
+  const parsedUrl = url.parse(req.url);
+  if (/^\/todo/.test(parsedUrl.path)) {
+    if (req.method === 'GET') {
+      // TodoController.get return promise;
+      TodoController.get(req, res);
+    } else if (req.method === 'POST') {
+      // TodoController.get return promise;
+      TodoController.create(req, res);
+    } else {
+      renderJsonResponse(res, {
+        success: false,
+        errors: [
+          { message: 'Invalid Request!' },
+        ],
+      }, 400);
+    }
+  } else {
+    renderJsonResponse(res, {
+      success: false,
+      errors: [
+        { message: 'Invalid Request!' },
+      ],
+    }, 400);
+  }
 });
 
 server.listen(8000);

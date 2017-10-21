@@ -3,3 +3,6 @@ node_modules
 
 # environment variables
 .env
+
+# npm log
+npm-debug.log
